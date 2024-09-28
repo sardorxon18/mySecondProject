@@ -1,0 +1,26 @@
+<div class="container mt-3">
+      {% if messages %}
+          <div class="row justify-content-center">
+              <div class="col-md-6">
+                  <div class="sms-box">
+                      {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} mt-2" role="alert">
+                              {{ message }}
+                          </div>
+                      {% endfor %}
+                  </div>
+              </div>
+          </div>
+      {% endif %}
+  </div>
+  
+  <!-- Xabarlarni 7 sekunddan keyin yashirish uchun JavaScript -->
+  <script>
+      window.setTimeout(function() {
+          var alerts = document.querySelectorAll('.alert');
+          alerts.forEach(function(alert) {
+              alert.style.display = 'none';
+          });
+      }, 5000); // 7000 millisekund = 7 sekund
+  </script>
+  

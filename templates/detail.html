@@ -1,0 +1,153 @@
+{% extends 'base.html' %} {% block content %} {% with page_name='detail' %} 
+{% include 'components/_nav.html' %} {% endwith %} 
+{% include "components/_message.html" %}
+
+<!-- Navigation-->
+
+<!-- Product section-->
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div class="col-md-6">
+        <img
+          class="card-img-top mb-5 mb-md-0"
+          src="{{ product.images.url }}"
+          alt="{{ product.name }}"
+          width="600"
+          height="700"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="small mb-1">Rating: {{ product.ratings }}</div>
+        <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+        <div class="fs-5 mb-5">
+          {% if product.new_price != 0 %}
+          <span class="text-decoration-line-through"
+            >${{ product.old_price }}</span
+          >
+          <span>${{ product.new_price }}</span>
+          {% else %}
+          <span>${{ product.old_price }} </span>
+          {% endif %}
+        </div>
+        <p class="lead">{{ product.description}}</p>
+        <div class="d-flex">
+          <!-- ################################################################################################### -->
+          <!-- Sotib olish uchun form bu yerdan kirgan malumotlarni backendga yig'ib olish uchun ishaltaman  -->
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <h2>Place an order</h2>
+            </div>
+            <div class="form-group mb-3">
+              <label for="formGroupExampleInput">Your name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your name"
+                name="buy_name"
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="formGroupExampleInput2">Your email</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your email"
+                name="buy_email"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <input
+                type="submit"
+                class="btn btn-success"
+                value="Send"
+                name="Buy_product"
+              />
+            </div>
+          </form>
+          <!-- ################################################################################################### -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center">
+        <h2>Latest comments</h2>
+      </div>
+
+      <!-- commentlarni kirish yasadim -->
+      {% for comment in comments %}
+      <div class="media card p-4 mt-2">
+        <div class="media-body">
+          <h3 class="mt-0">{{ comment.name }}</h3>
+          {{ comment.body }}
+        </div>
+      </div>
+      {% endfor %}
+
+      <!--  ushbu joyni o'chirish kerak  -->
+    </div>
+
+    <div class="col-8 offset-2 mt-5">
+      <div class="p-5">
+        <div class="text-center">
+          <h3>Add Comment</h3>
+        </div>
+        <!-- ############################################################################ -->
+
+        <!-- Forma commentlar bilan ishash ################################### -->
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            <label for="formGroupExampleInput">Your name</label>
+            <input
+              type="text"
+              name="c_name"
+              class="form-control"
+              placeholder="Your name"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="formGroupExampleInput2">Your email</label>
+            <input
+              type="text"
+              name="c_email"
+              class="form-control"
+              placeholder="Your email"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="formGroupExampleInput2">Your comment</label>
+            <textarea
+              name="c_comment"
+              class="form-control"
+              id=""
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <input
+              type="submit"
+              class="btn btn-success"
+              value="Send"
+              name="c_button"
+            />
+          </div>
+        </form>
+        <!-- ############################################################################ -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'components/ads_view.html' %}
+{% endblock content %}

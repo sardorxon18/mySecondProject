@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %} {% with page_name='home' %} 
+{% include 'components/_nav.html' %} {% endwith %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Shop in style</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        With this shop hompeage template
+      </p>
+    </div>
+  </div>
+</header>
+<!-- Section-->
+
+{% include "components/_filter.html" %}
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div
+      class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+      {% for produc in product %}
+      <div class="col mb-5">
+        <div class="card h-100">
+          <!-- Sale badge-->
+          {% if produc.is_sale %}
+          <div
+            class="badge bg-dark text-white position-absolute"
+            style="top: 0.5rem; right: 0.5rem"
+          >
+            Sale
+          </div>
+          {% endif %}
+          <!-- Product image-->
+          <img
+          class="card-img-top"
+          src="{% if produc.images %}
+          {{ produc.images.url }}
+          {% else %}
+          https://dummyimage.com/450x300/dee2e6/6c757d.jpg
+          {% endif %}"
+          alt="{{ produc.name }}"
+          width="450"
+          height="300"
+      />
+      
+          <!-- Product details-->
+          <div class="card-body p-4">
+            <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder">{{ produc.name }}</h5>
+              <!-- Product reviews-->
+              <div
+                class="d-flex justify-content-center small text-warning mb-2"
+              >
+                <!-- stars -->
+                {% if produc.ratings == 1 %}
+                    ⭐ 
+                {% elif produc.ratings == 2 %}
+                    ⭐⭐ 
+                {% elif produc.ratings == 3 %} 
+                    ⭐⭐⭐ 
+                {% elif produc.ratings == 4 %} 
+                    ⭐⭐⭐⭐ 
+                {% elif produc.ratings == 5 %} 
+                    ⭐⭐⭐⭐⭐ 
+                {% else %} Reyting yo'q {% endif %}
+              </div>
+              <!-- Product price-->
+              {% if produc.new_price != 0 %}
+              <span class="text-muted text-decoration-line-through"
+                >${{ produc.old_price }}</span
+              >
+              <strong> ${{ produc.new_price }}</strong>
+              {% else %}
+              <strong>${{ produc.old_price }}</strong>
+              {% endif %}
+            </div>
+          </div>
+          <!-- Product actions-->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center">
+              <a class="btn btn-outline-dark mt-auto" href="{% url 'product_detail' produc.id %}"
+                >View product</a>
+             
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- Footer-->
+
+{% endblock content %}
