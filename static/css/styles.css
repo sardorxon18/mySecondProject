@@ -10825,3 +10825,129 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+
+
+
+
+/* ############################################################# tel uchun */
+
+/* Mobil uchun moslash (768px dan kichik ekranlar) */
+@media (max-width: 768px) {
+  /* Rasmni to'liq kenglikda va balandligini avtomatik qilish */
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Mahsulot nomi matn hajmini kichik ekranlarda kamaytirish */
+  .card-body h5 {
+    font-size: 1.2rem;
+  }
+
+  /* Tugmalarni to'liq kenglikda ko'rsatish */
+  .card-footer .btn {
+    width: 100%;
+  }
+
+  /* Kichik ekranlarda har bir qatorga faqat bitta mahsulot qo'yish */
+  .row-cols-md-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  /* Juda kichik ekranlar uchun (576px yoki undan kichik) moslash */
+  @media (max-width: 576px) {
+    .card-body h5 {
+      font-size: 1rem; /* Mahsulot nomini yanada kichikroq qilish */
+    }
+  }
+}
+/* Kichik ekranlar (telefonlar) uchun moslash */
+@media (max-width: 768px) {
+  /* Sahifadagi rasmni to'liq kenglikda va avtomatik balandlikda ko'rsatish */
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Sahifadagi mahsulot nomini kichik ekranlarda mos hajmda ko'rsatish */
+  h1.display-5 {
+    font-size: 2rem;
+  }
+
+  /* Narx ko'rsatilgan matn hajmini kichik ekranlarga moslash */
+  .fs-5 {
+    font-size: 1.2rem;
+  }
+
+  /* Form elementlarini moslaymiz */
+  .form-control {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .btn-success {
+    width: 100%; /* Tugmalarni to'liq kenglikda ko'rsatish */
+    font-size: 1.2rem;
+  }
+
+  /* Izohlar bo'limidagi kartalarni kichikroq qilish */
+  .card {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+
+  /* Izoh matnini kichik ekranlar uchun moslashtirish */
+  .media-body h3 {
+    font-size: 1.5rem;
+  }
+
+  .media-body p {
+    font-size: 1rem;
+  }
+
+  /* Izoh kiritish bo'limini moslashtirish */
+  textarea {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  /* Umumiy konteyner kengligini kichik ekranlarga moslashtirish */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* Juda kichik ekranlar uchun (576px yoki undan kichik) */
+@media (max-width: 576px) {
+  /* Izohlar bo'limidagi sarlavhalarni moslashtirish */
+  .media-body h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Mahsulot nomi va narx hajmini yana kichikroq qilish */
+  h1.display-5 {
+    font-size: 1.8rem;
+  }
+
+  .fs-5 {
+    font-size: 1rem;
+  }
+
+  /* Form elementlari yanada kichik ekranlarga moslash */
+  .form-control {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .btn-success {
+    font-size: 1rem;
+  }
+
+  /* Kartalar orasidagi bo'shliqni kichikroq qilish */
+  .card {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+}
